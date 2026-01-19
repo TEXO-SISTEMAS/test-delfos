@@ -43,7 +43,7 @@
 
         /* ===== SECCIÓN PORTADA ===== */
         .splash-screen {
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -111,7 +111,7 @@
 
         /* ===== FORMULARIO INICIAL ===== */
         .initial-form {
-            display: none;
+            display: block;
             animation: slideInUp 0.6s ease-out;
         }
 
@@ -452,11 +452,7 @@
         }
 
         .result-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-            animation: slideInUp 0.6s ease-out 0.3s both;
+            display: none;
         }
 
         .stat-item {
@@ -490,7 +486,10 @@
             animation: slideInUp 0.6s ease-out 0.4s both;
         }
 
-        .btn-download,
+        .btn-download {
+            display: none;
+        }
+
         .btn-new-test {
             padding: 14px 35px;
             border: none;
@@ -501,20 +500,6 @@
             text-transform: uppercase;
             font-size: 0.95em;
             letter-spacing: 0.5px;
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
-            color: white;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-download:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
-        }
-
-        .btn-new-test {
             background: white;
             color: var(--secondary-blue);
             border: 2px solid var(--secondary-blue);
@@ -626,9 +611,7 @@
                 <div class="splash-logo-container">
                     <img src="" alt="Test Delfos" id="splashImage">
                 </div>
-                <h1>Test Delfos</h1>
-                <p>Descubre tu estilo único como profesional en la publicidad. A través de preguntas reflexivas sobre cómo gestionas proyectos, te relacionas y tomas decisiones, obtendrás una visión clara de tu perfil.</p>
-                <p style="font-size: 0.95em; color: #666; margin-top: 20px;">No hay respuestas correctas ni incorrectas. ¡Es momento de conocerte mejor!</p>
+
                 <button class="btn-start" onclick="startTest()">Iniciar Test</button>
             </div>
         </div>
@@ -802,28 +785,8 @@
                 <img id="resultImage" class="result-image" src="" alt="Resultado">
                 <h2 class="result-title" id="resultTitle"></h2>
                 <p class="result-description" id="resultDescription"></p>
-                
-                <div class="result-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Dimensión Técnica</div>
-                        <div class="stat-value" id="statTecnica">-</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Dimensión Administrativa</div>
-                        <div class="stat-value" id="statAdministrativa">-</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Dimensión Organizacional</div>
-                        <div class="stat-value" id="statOrganizacional">-</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Dimensión Política</div>
-                        <div class="stat-value" id="statPolitica">-</div>
-                    </div>
-                </div>
 
                 <div class="result-buttons">
-                    <button class="btn-download" onclick="downloadResult()">📥 Descargar Resultado</button>
                     <button class="btn-new-test" onclick="restartTest()">🔄 Nuevo Test</button>
                 </div>
             </div>
@@ -1105,13 +1068,13 @@
 
         // FUNCIONES PRINCIPALES
         function startTest() {
-            document.getElementById('splashScreen').style.display = 'none';
-            document.getElementById('initialForm').style.display = 'block';
+            // Ya estamos en el formulario, simplemente continuar
+            return;
         }
 
         function goBack() {
-            document.getElementById('initialForm').style.display = 'none';
-            document.getElementById('splashScreen').style.display = 'flex';
+            // Recargar página para volver al inicio del formulario
+            location.reload();
         }
 
         document.getElementById('initialFormData').addEventListener('submit', function(e) {
@@ -1280,12 +1243,6 @@
             const imageSrc = getImageSource(imageKey);
             document.getElementById('resultImage').src = imageSrc;
             
-            // Mostrar estadísticas
-            document.getElementById('statTecnica').textContent = averages.tecnica.toFixed(1);
-            document.getElementById('statAdministrativa').textContent = averages.administrativa.toFixed(1);
-            document.getElementById('statOrganizacional').textContent = averages.organizacional.toFixed(1);
-            document.getElementById('statPolitica').textContent = averages.politica.toFixed(1);
-            
             // Guardar en Google Sheets
             saveToGoogleSheets(profile, averages);
         }
@@ -1346,10 +1303,6 @@
             .catch(error => {
                 console.error('✗ Error en la solicitud:', error);
             });
-        }
-
-        function downloadResult() {
-            alert('Funcionalidad de descarga en desarrollo');
         }
 
         function restartTest() {
