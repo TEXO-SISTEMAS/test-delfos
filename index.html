@@ -441,15 +441,7 @@
         }
 
         .result-description {
-            font-size: 1.15em;
-            color: var(--dark-text);
-            line-height: 1.8;
-            margin-bottom: 30px;
-            animation: slideInUp 0.6s ease-out 0.2s both;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+            display: none;
 
         .result-stats {
             display: none;
@@ -784,7 +776,6 @@
             <div class="result-card">
                 <img id="resultImage" class="result-image" src="" alt="Resultado">
                 <h2 class="result-title" id="resultTitle"></h2>
-                <p class="result-description" id="resultDescription"></p>
 
                 <div class="result-buttons">
                     <button class="btn-new-test" onclick="restartTest()">🔄 Nuevo Test</button>
@@ -1234,10 +1225,10 @@
                 imageKey = 'exploradorCreativo';
             }
             
-            // Mostrar resultados
+            // Mostrar resultado
             const desc = resultDescriptions[profile];
             document.getElementById('resultTitle').textContent = desc.title;
-            document.getElementById('resultDescription').textContent = desc.description;
+            // Descripción quitada - solo mostrar imagen y título
             
             // Mostrar imagen (necesitaremos cargarlas)
             const imageSrc = getImageSource(imageKey);
