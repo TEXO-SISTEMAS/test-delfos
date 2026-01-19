@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Delfos - Descubre tu Estilo Profesional</title>
+    <title>Test Delfos</title>
     <style>
         * {
             margin: 0;
@@ -17,16 +17,13 @@
             --secondary-blue: #004E89;
             --secondary-teal: #2B9FA3;
             --accent-yellow: #FFC857;
-            --light-cream: #F5F5F5;
             --dark-text: #1A1A1A;
             --light-text: #FFFFFF;
-            --bg-light: #E8E8E8;
-            --bg-medium: #D0D0D0;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
+            background: linear-gradient(135deg, #E8E8E8 0%, #D0D0D0 100%);
             min-height: 100vh;
             color: var(--dark-text);
             overflow-x: hidden;
@@ -42,82 +39,18 @@
             justify-content: center;
         }
 
-        /* ===== SECCIÓN PORTADA ===== */
-        .splash-screen {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            animation: slideInUp 0.8s ease-out;
-        }
-
-        .splash-logo-container {
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .splash-logo-container img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .splash-content h1 {
-            font-size: 3em;
-            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-
-        .splash-content p {
-            font-size: 1.2em;
-            color: var(--secondary-blue);
-            margin-bottom: 30px;
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        .btn-start {
-            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
-            color: white;
-            border: none;
-            padding: 18px 50px;
-            font-size: 1.1em;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-start:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
-        }
-
-        .btn-start:active {
-            transform: translateY(-1px);
-        }
-
-        /* ===== FORMULARIO INICIAL ===== */
+        /* FORMULARIO */
         .initial-form {
             display: block;
             animation: slideInUp 0.6s ease-out;
         }
 
+        .initial-form.hidden {
+            display: none;
+        }
+
         .form-container {
-            background: white;
+            background: #F5F5F5;
             padding: 50px 40px;
             border-radius: 25px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -185,14 +118,6 @@
             background-color: rgba(255, 107, 53, 0.02);
         }
 
-        .form-group input::placeholder {
-            color: #999;
-        }
-
-        .form-row-projects {
-            grid-template-columns: 1fr;
-        }
-
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -226,19 +151,21 @@
             justify-content: center;
         }
 
-        .btn-submit {
-            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-teal));
-            color: white;
-            border: none;
+        .btn-submit, .btn-back {
             padding: 14px 40px;
-            font-size: 1em;
+            border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 78, 137, 0.3);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-teal));
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 78, 137, 0.3);
         }
 
         .btn-submit:hover {
@@ -250,25 +177,20 @@
             background: #f0f0f0;
             color: var(--dark-text);
             border: 2px solid #ddd;
-            padding: 14px 40px;
-            font-size: 1em;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .btn-back:hover {
             background: #e0e0e0;
-            border-color: #999;
         }
 
-        /* ===== SECCIÓN TEST ===== */
+        /* TEST */
         .test-section {
             display: none;
             animation: slideInUp 0.6s ease-out;
+        }
+
+        .test-section.visible {
+            display: block;
         }
 
         .progress-bar {
@@ -278,7 +200,6 @@
             border-radius: 10px;
             margin-bottom: 30px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .progress-fill {
@@ -290,7 +211,7 @@
         }
 
         .question-container {
-            background: white;
+            background: #F5F5F5;
             padding: 50px 40px;
             border-radius: 25px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -354,8 +275,7 @@
             justify-content: space-between;
         }
 
-        .btn-prev,
-        .btn-next {
+        .btn-prev, .btn-next {
             padding: 12px 30px;
             border: 2px solid var(--primary-orange);
             background: white;
@@ -387,38 +307,24 @@
             border-color: var(--secondary-blue);
         }
 
-        .btn-next.submit-test:hover {
-            background: linear-gradient(135deg, var(--secondary-teal), var(--secondary-blue));
-            box-shadow: 0 10px 30px rgba(0, 78, 137, 0.4);
-        }
-
-        /* ===== RESULTADOS ===== */
+        /* RESULTADO */
         .results-section {
             display: none;
             animation: slideInUp 0.6s ease-out;
         }
 
+        .results-section.visible {
+            display: block;
+        }
+
         .result-card {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
+            background: #F5F5F5;
             border-radius: 30px;
             padding: 50px 40px;
             text-align: center;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
-        }
-
-        .result-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-yellow), transparent);
-            opacity: 0.2;
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .result-image {
@@ -437,37 +343,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             animation: slideInUp 0.6s ease-out 0.1s both;
-        }
-
-        .result-description {
-            display: none;
-
-        .result-stats {
-            display: none;
-        }
-
-        .stat-item {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .stat-label {
-            font-size: 0.9em;
-            color: #999;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-value {
-            font-size: 1.8em;
-            color: var(--primary-orange);
-            font-weight: 700;
         }
 
         .result-buttons {
@@ -476,16 +353,13 @@
             justify-content: center;
             margin-top: 40px;
             flex-wrap: wrap;
-            animation: slideInUp 0.6s ease-out 0.4s both;
-        }
-
-        .btn-download {
-            display: none;
         }
 
         .btn-new-test {
             padding: 14px 35px;
-            border: none;
+            border: 2px solid var(--secondary-blue);
+            background: white;
+            color: var(--secondary-blue);
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
@@ -493,10 +367,6 @@
             text-transform: uppercase;
             font-size: 0.95em;
             letter-spacing: 0.5px;
-            background: white;
-            color: var(--secondary-blue);
-            border: 2px solid var(--secondary-blue);
-            box-shadow: 0 5px 15px rgba(0, 78, 137, 0.2);
         }
 
         .btn-new-test:hover {
@@ -504,7 +374,11 @@
             color: white;
         }
 
-        /* ===== ANIMACIONES ===== */
+        .btn-new-test:active {
+            transform: scale(0.98);
+        }
+
+        /* ANIMACIONES */
         @keyframes slideInUp {
             from {
                 opacity: 0;
@@ -513,15 +387,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
             }
         }
 
@@ -536,18 +401,10 @@
             }
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
-            }
-
-            .splash-content h1 {
-                font-size: 2em;
-            }
-
-            .splash-content p {
-                font-size: 1em;
             }
 
             .question-text {
@@ -567,53 +424,15 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-
-            .result-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== ERROR MESSAGE ===== */
-        .error-message {
-            background: #fee;
-            color: #c33;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #c33;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-            animation: slideInUp 0.3s ease-out;
-        }
-
-        .confetti {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- SPLASH SCREEN -->
-        <div class="splash-screen" id="splashScreen">
-            <div class="splash-content">
-                <div class="splash-logo-container">
-                    <img src="" alt="Test Delfos" id="splashImage">
-                </div>
-
-                <button class="btn-start" onclick="startTest()">Iniciar Test</button>
-            </div>
-        </div>
-
         <!-- FORMULARIO INICIAL -->
         <div class="initial-form" id="initialForm">
             <div class="form-container">
                 <h2>Cuéntanos Sobre Ti</h2>
-                <div class="error-message" id="errorMessage"></div>
                 
                 <form id="initialFormData">
                     <div class="form-row">
@@ -692,7 +511,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row form-row-projects">
+                    <div class="form-row form-row.full">
                         <div class="form-group">
                             <label>Tipos de Proyectos que te Entusiasman *</label>
                             <div class="projects-grid">
@@ -701,7 +520,7 @@
                                     <label for="proj1">Design Thinking</label>
                                 </div>
                                 <div class="project-checkbox">
-                                    <input type="checkbox" id="proj2" name="proyectos" value="Human-Centered Design (HCD)">
+                                    <input type="checkbox" id="proj2" name="proyectos" value="Human-Centered Design">
                                     <label for="proj2">Human-Centered Design</label>
                                 </div>
                                 <div class="project-checkbox">
@@ -717,7 +536,7 @@
                                     <label for="proj5">Creatividad Estratégica</label>
                                 </div>
                                 <div class="project-checkbox">
-                                    <input type="checkbox" id="proj6" name="proyectos" value="Customer Experience (CX)">
+                                    <input type="checkbox" id="proj6" name="proyectos" value="Customer Experience">
                                     <label for="proj6">Customer Experience</label>
                                 </div>
                                 <div class="project-checkbox">
@@ -749,14 +568,13 @@
                     </div>
 
                     <div class="form-buttons">
-                        <button type="button" class="btn-back" onclick="goBack()">Volver</button>
                         <button type="submit" class="btn-submit">Continuar con el Test</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- SECCIÓN TEST -->
+        <!-- TEST -->
         <div class="test-section" id="testSection">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
@@ -772,12 +590,11 @@
             </div>
         </div>
 
-        <!-- SECCIÓN RESULTADOS -->
+        <!-- RESULTADO -->
         <div class="results-section" id="resultsSection">
             <div class="result-card">
                 <img id="resultImage" class="result-image" src="" alt="Resultado">
                 <h2 class="result-title" id="resultTitle"></h2>
-
                 <div class="result-buttons">
                     <button class="btn-new-test" onclick="restartTest()">🔄 Nuevo Test</button>
                 </div>
@@ -785,10 +602,7 @@
         </div>
     </div>
 
-    <!-- Script Principal -->
     <script>
-        // Las imágenes se cargan directamente desde los archivos PNG en GitHub
-
         // DATOS DEL TEST
         const testData = [
             {
@@ -796,10 +610,10 @@
                 dimension: 'tecnica',
                 text: 'Un cliente solicita una solución innovadora para su proyecto, con un brief poco claro. ¿Cómo desarrollás la propuesta?',
                 options: [
-                    { text: 'Propongo una solución luego de haber hecho un diagnóstico y haber conversado con el cliente', level: 4, originalOrder: 'd' },
-                    { text: 'Investigo referencias adicionales y propongo alternativas viables', level: 3, originalOrder: 'c' },
-                    { text: 'Presento ideas basadas en prácticas comunes del mercado optimizando el tiempo', level: 2, originalOrder: 'b' },
-                    { text: 'Solicito directrices a nivel interno antes de avanzar', level: 1, originalOrder: 'a' }
+                    { text: 'Propongo una solución luego de haber hecho un diagnóstico y haber conversado con el cliente', level: 4 },
+                    { text: 'Investigo referencias adicionales y propongo alternativas viables', level: 3 },
+                    { text: 'Presento ideas basadas en prácticas comunes del mercado optimizando el tiempo', level: 2 },
+                    { text: 'Solicito directrices a nivel interno antes de avanzar', level: 1 }
                 ]
             },
             {
@@ -807,10 +621,10 @@
                 dimension: 'tecnica',
                 text: 'Te asignan un proyecto, pero los insumos que recibes tienen limitaciones en calidad o precisión. ¿Cómo manejas la situación?',
                 options: [
-                    { text: 'Desarrollo soluciones para mejorar la calidad del resultado final', level: 4, originalOrder: 'd' },
-                    { text: 'Propongo evaluar alternativas y negocio el tiempo', level: 3, originalOrder: 'c' },
-                    { text: 'Intento optimizar el entregable con los recursos que tengo', level: 2, originalOrder: 'b' },
-                    { text: 'Trabajo con lo disponible sin hacer modificaciones', level: 1, originalOrder: 'a' }
+                    { text: 'Desarrollo soluciones para mejorar la calidad del resultado final', level: 4 },
+                    { text: 'Propongo evaluar alternativas y negocio el tiempo', level: 3 },
+                    { text: 'Intento optimizar el entregable con los recursos que tengo', level: 2 },
+                    { text: 'Trabajo con lo disponible sin hacer modificaciones', level: 1 }
                 ]
             },
             {
@@ -818,10 +632,10 @@
                 dimension: 'tecnica',
                 text: 'Un proyecto requiere que utilices una nueva metodología. ¿Cómo actúas?',
                 options: [
-                    { text: 'Aplico una estrategia basada en la investigación previa integrando otras metodologías', level: 4, originalOrder: 'd' },
-                    { text: 'Investigo recursos existentes y los aplico al proyecto', level: 3, originalOrder: 'c' },
-                    { text: 'Consulto con colegas que tengan experiencia y pido su apoyo para la primera implementación', level: 2, originalOrder: 'b' },
-                    { text: 'Pregunto si existe un modelo anterior que me sirva de guía', level: 1, originalOrder: 'a' }
+                    { text: 'Aplico una estrategia basada en la investigación previa integrando otras metodologías', level: 4 },
+                    { text: 'Investigo recursos existentes y los aplico al proyecto', level: 3 },
+                    { text: 'Consulto con colegas que tengan experiencia y pido su apoyo para la primera implementación', level: 2 },
+                    { text: 'Pregunto si existe un modelo anterior que me sirva de guía', level: 1 }
                 ]
             },
             {
@@ -829,10 +643,10 @@
                 dimension: 'tecnica',
                 text: 'Me sumo a un equipo de trabajo para desarrollar un nuevo proyecto. ¿Qué haces?',
                 options: [
-                    { text: 'Exploro y propongo alternativas para realizar las tareas', level: 4, originalOrder: 'd' },
-                    { text: 'Aplico mis conocimientos en base a mi experiencia', level: 3, originalOrder: 'c' },
-                    { text: 'Me muestro dispuesto a aprender y colaborar', level: 2, originalOrder: 'b' },
-                    { text: 'Aguardo la capacitación u orientación necesaria', level: 1, originalOrder: 'a' }
+                    { text: 'Exploro y propongo alternativas para realizar las tareas', level: 4 },
+                    { text: 'Aplico mis conocimientos en base a mi experiencia', level: 3 },
+                    { text: 'Me muestro dispuesto a aprender y colaborar', level: 2 },
+                    { text: 'Aguardo la capacitación u orientación necesaria', level: 1 }
                 ]
             },
             {
@@ -840,10 +654,10 @@
                 dimension: 'tecnica',
                 text: 'Se presenta un problema antes de la entrega final de un proyecto. ¿Cómo manejas la situación?',
                 options: [
-                    { text: 'Hago las correcciones necesarias, informo al cliente y llego a un nuevo acuerdo', level: 4, originalOrder: 'd' },
-                    { text: 'Corroboro la gravedad del problema, hago los ajustes más urgentes y dejo el resto para revisar en una segunda entrega', level: 3, originalOrder: 'c' },
-                    { text: 'Informo al equipo para ver con qué se puede llegar a entregar', level: 2, originalOrder: 'b' },
-                    { text: 'Consulto internamente qué debo hacer', level: 1, originalOrder: 'a' }
+                    { text: 'Hago las correcciones necesarias, informo al cliente y llego a un nuevo acuerdo', level: 4 },
+                    { text: 'Corroboro la gravedad del problema, hago los ajustes más urgentes y dejo el resto para revisar en una segunda entrega', level: 3 },
+                    { text: 'Informo al equipo para ver con qué se puede llegar a entregar', level: 2 },
+                    { text: 'Consulto internamente qué debo hacer', level: 1 }
                 ]
             },
             {
@@ -851,10 +665,10 @@
                 dimension: 'administrativa',
                 text: 'Se te asigna un proyecto con recursos limitados y un plazo ajustado. ¿Cómo procedes?',
                 options: [
-                    { text: 'Propongo formas para reestructurar el proyecto, priorizando los aspectos fundamentales sin comprometer la calidad', level: 4, originalOrder: 'd' },
-                    { text: 'Reviso el alcance del proyecto, identifico áreas donde se pueda reducir recursos sin comprometer los resultados finales', level: 3, originalOrder: 'c' },
-                    { text: 'Priorizo las tareas claves dentro del límite de recursos con los cuales se cuenta y busco cumplir con lo esencial', level: 2, originalOrder: 'b' },
-                    { text: 'Sigo el plan inicial y hago algunos cambios para ajustarme a los deadlines', level: 1, originalOrder: 'a' }
+                    { text: 'Propongo formas para reestructurar el proyecto, priorizando los aspectos fundamentales sin comprometer la calidad', level: 4 },
+                    { text: 'Reviso el alcance del proyecto, identifico áreas donde se pueda reducir recursos sin comprometer los resultados finales', level: 3 },
+                    { text: 'Priorizo las tareas claves dentro del límite de recursos con los cuales se cuenta y busco cumplir con lo esencial', level: 2 },
+                    { text: 'Sigo el plan inicial y hago algunos cambios para ajustarme a los deadlines', level: 1 }
                 ]
             },
             {
@@ -862,10 +676,10 @@
                 dimension: 'administrativa',
                 text: 'Estás involucrado en un proyecto que implica varios proveedores trabajando en diferentes áreas. ¿Cómo gestionas la situación?',
                 options: [
-                    { text: 'Establezco un sistema de coordinación entre los proveedores, defino objetivos claros para cada uno, gestionando la complejidad', level: 4, originalOrder: 'd' },
-                    { text: 'Propongo un cronograma detallado con hitos intermedios para garantizar que todos los proveedores se mantengan en el camino', level: 3, originalOrder: 'c' },
-                    { text: 'Realizo un seguimiento de las entregas, pero sin intervenir demasiado en el proceso', level: 2, originalOrder: 'b' },
-                    { text: 'Confío en que los proveedores cumplan con sus responsabilidades según el acuerdo', level: 1, originalOrder: 'a' }
+                    { text: 'Establezco un sistema de coordinación entre los proveedores, defino objetivos claros para cada uno, gestionando la complejidad', level: 4 },
+                    { text: 'Propongo un cronograma detallado con hitos intermedios para garantizar que todos los proveedores se mantengan en el camino', level: 3 },
+                    { text: 'Realizo un seguimiento de las entregas, pero sin intervenir demasiado en el proceso', level: 2 },
+                    { text: 'Confío en que los proveedores cumplan con sus responsabilidades según el acuerdo', level: 1 }
                 ]
             },
             {
@@ -873,10 +687,10 @@
                 dimension: 'administrativa',
                 text: 'En medio de un proyecto, surgen retrasos que afectan los plazos de entrega. ¿Cómo abordas la situación?',
                 options: [
-                    { text: 'Propongo un plan estratégico de optimización de procesos que, además de resolver el retraso, también mejore la eficiencia a largo plazo', level: 4, originalOrder: 'd' },
-                    { text: 'Realizo un análisis para comprender las causas raíz del retraso, propongo ajustes específicos para recuperar el tiempo y solicito nuevas fechas con el cliente', level: 3, originalOrder: 'c' },
-                    { text: 'Convoco una reunión para identificar las áreas que están causando el retraso y elevo a los supervisores para que se tomen decisiones', level: 2, originalOrder: 'b' },
-                    { text: 'Informo al equipo sobre los plazos ajustados y sigo los pasos del proceso previstos', level: 1, originalOrder: 'a' }
+                    { text: 'Propongo un plan estratégico de optimización de procesos que, además de resolver el retraso, también mejore la eficiencia a largo plazo', level: 4 },
+                    { text: 'Realizo un análisis para comprender las causas raíz del retraso, propongo ajustes específicos para recuperar el tiempo y solicito nuevas fechas con el cliente', level: 3 },
+                    { text: 'Convoco una reunión para identificar las áreas que están causando el retraso y elevo a los supervisores para que se tomen decisiones', level: 2 },
+                    { text: 'Informo al equipo sobre los plazos ajustados y sigo los pasos del proceso previstos', level: 1 }
                 ]
             },
             {
@@ -884,10 +698,10 @@
                 dimension: 'administrativa',
                 text: 'El equipo ha señalado que la productividad podría mejorar si optimizamos el uso de las herramientas en tu área. ¿Cómo actuarías?',
                 options: [
-                    { text: 'Realizo un análisis de las herramientas actuales, propongo nuevas soluciones tecnológicas e impulso su implementación para una mejora sostenida en la productividad', level: 4, originalOrder: 'd' },
-                    { text: 'Investigo y propongo nuevas herramientas o ajustes a las existentes, alineándome con las necesidades del equipo y los proyectos', level: 3, originalOrder: 'c' },
-                    { text: 'Me enfoco en aprender nuevas herramientas según necesidad y las aplico según me lo indiquen', level: 2, originalOrder: 'b' },
-                    { text: 'Utilizo las herramientas que están disponibles y las aplico en mis tareas', level: 1, originalOrder: 'a' }
+                    { text: 'Realizo un análisis de las herramientas actuales, propongo nuevas soluciones tecnológicas e impulso su implementación para una mejora sostenida en la productividad', level: 4 },
+                    { text: 'Investigo y propongo nuevas herramientas o ajustes a las existentes, alineándome con las necesidades del equipo y los proyectos', level: 3 },
+                    { text: 'Me enfoco en aprender nuevas herramientas según necesidad y las aplico según me lo indiquen', level: 2 },
+                    { text: 'Utilizo las herramientas que están disponibles y las aplico en mis tareas', level: 1 }
                 ]
             },
             {
@@ -895,10 +709,10 @@
                 dimension: 'administrativa',
                 text: 'Surge una tendencia innovadora en la industria publicitaria que impacta en tu forma de trabajar. ¿Cómo reaccionas?',
                 options: [
-                    { text: 'Me adapto rápidamente, y capacito al equipo sobre la tendencia proponiendo nuevas estrategias basadas en ella', level: 4, originalOrder: 'd' },
-                    { text: 'Investigo sobre la nueva tendencia, analizo su impacto en mi trabajo y comienzo a aplicarla progresivamente', level: 3, originalOrder: 'c' },
-                    { text: 'Me informo sobre el cambio y trato de ajustarme cuando sea necesario', level: 2, originalOrder: 'b' },
-                    { text: 'Continúo trabajando como siempre, hasta que el equipo o la empresa definan cómo adaptarse', level: 1, originalOrder: 'a' }
+                    { text: 'Me adapto rápidamente, y capacito al equipo sobre la tendencia proponiendo nuevas estrategias basadas en ella', level: 4 },
+                    { text: 'Investigo sobre la nueva tendencia, analizo su impacto en mi trabajo y comienzo a aplicarla progresivamente', level: 3 },
+                    { text: 'Me informo sobre el cambio y trato de ajustarme cuando sea necesario', level: 2 },
+                    { text: 'Continúo trabajando como siempre, hasta que el equipo o la empresa definan cómo adaptarse', level: 1 }
                 ]
             },
             {
@@ -906,10 +720,10 @@
                 dimension: 'organizacional',
                 text: 'Un equipo debe ejecutar un proyecto con plazos ajustados y sin mucha claridad sobre el enfoque. ¿Cómo lo gestionas?',
                 options: [
-                    { text: 'Establezco un plan detallado, donde se visualizan las prioridades, para lograr llegar dentro de los tiempos establecidos', level: 4, originalOrder: 'd' },
-                    { text: 'Organizo una sesión inicial para definir el enfoque general y luego gestiono mi área de responsabilidad', level: 3, originalOrder: 'c' },
-                    { text: 'Organizo reuniones periódicas para hacer seguimiento y aclarar dudas a medida que surgen', level: 2, originalOrder: 'b' },
-                    { text: 'Trabajo a mi ritmo y resuelvo cualquier duda de manera autónoma', level: 1, originalOrder: 'a' }
+                    { text: 'Establezco un plan detallado, donde se visualizan las prioridades, para lograr llegar dentro de los tiempos establecidos', level: 4 },
+                    { text: 'Organizo una sesión inicial para definir el enfoque general y luego gestiono mi área de responsabilidad', level: 3 },
+                    { text: 'Organizo reuniones periódicas para hacer seguimiento y aclarar dudas a medida que surgen', level: 2 },
+                    { text: 'Trabajo a mi ritmo y resuelvo cualquier duda de manera autónoma', level: 1 }
                 ]
             },
             {
@@ -917,10 +731,10 @@
                 dimension: 'organizacional',
                 text: 'Tienes varias tareas para realizar, algunas con plazos inminentes y otras de gran impacto a largo plazo. ¿Cómo organizas tu trabajo?',
                 options: [
-                    { text: 'Establezco un plan equilibrado, dando espacio a las tareas urgentes y a las importantes', level: 4, originalOrder: 'd' },
-                    { text: 'Identifico las tareas urgentes e importantes, reprogramando las menos críticas', level: 3, originalOrder: 'c' },
-                    { text: 'Enfoco mi tiempo en las tareas prioritarias, sabiendo que algunas importantes se cumplirán en otros tiempos', level: 2, originalOrder: 'b' },
-                    { text: 'Consulto con mi supervisor y priorizo las tareas de acuerdo a sus indicaciones', level: 1, originalOrder: 'a' }
+                    { text: 'Establezco un plan equilibrado, dando espacio a las tareas urgentes y a las importantes', level: 4 },
+                    { text: 'Identifico las tareas urgentes e importantes, reprogramando las menos críticas', level: 3 },
+                    { text: 'Enfoco mi tiempo en las tareas prioritarias, sabiendo que algunas importantes se cumplirán en otros tiempos', level: 2 },
+                    { text: 'Consulto con mi supervisor y priorizo las tareas de acuerdo a sus indicaciones', level: 1 }
                 ]
             },
             {
@@ -928,10 +742,10 @@
                 dimension: 'organizacional',
                 text: 'Tienes un conjunto de tareas con distintos niveles de urgencia y responsabilidad. ¿Cómo gestionas tu agenda semanal?',
                 options: [
-                    { text: 'Planifico mi semana atendiendo mis prioridades de corto, mediano y largo plazo', level: 4, originalOrder: 'd' },
-                    { text: 'Estructuro mi semana por bloques de trabajo, asignando tareas específicas para cada día', level: 3, originalOrder: 'c' },
-                    { text: 'Asigno un tiempo para cada tarea según el nivel de urgencia acordado con mi supervisor, con una planificación flexible', level: 2, originalOrder: 'b' },
-                    { text: 'Realizo una lista de tareas al inicio de cada día, priorizando lo más urgente', level: 1, originalOrder: 'a' }
+                    { text: 'Planifico mi semana atendiendo mis prioridades de corto, mediano y largo plazo', level: 4 },
+                    { text: 'Estructuro mi semana por bloques de trabajo, asignando tareas específicas para cada día', level: 3 },
+                    { text: 'Asigno un tiempo para cada tarea según el nivel de urgencia acordado con mi supervisor, con una planificación flexible', level: 2 },
+                    { text: 'Realizo una lista de tareas al inicio de cada día, priorizando lo más urgente', level: 1 }
                 ]
             },
             {
@@ -939,10 +753,10 @@
                 dimension: 'organizacional',
                 text: 'Te asignan varios proyectos con plazos de entrega similares. ¿Cómo distribuyes el tiempo y prioridades?',
                 options: [
-                    { text: 'Elaboro un plan de trabajo para culminar primero las tareas más sencillas, liberando tiempos suficientes para abordar las tareas de mayor complejidad', level: 4, originalOrder: 'd' },
-                    { text: 'Estructuro una agenda de acuerdo a prioridades, bloqueo tiempo para cada tarea, y delego si es necesario', level: 3, originalOrder: 'c' },
-                    { text: 'Me concentro en las tareas que deben ser entregadas primero', level: 2, originalOrder: 'b' },
-                    { text: 'Le pido a mi supervisor que me ayude a priorizar las tareas', level: 1, originalOrder: 'a' }
+                    { text: 'Elaboro un plan de trabajo para culminar primero las tareas más sencillas, liberando tiempos suficientes para abordar las tareas de mayor complejidad', level: 4 },
+                    { text: 'Estructuro una agenda de acuerdo a prioridades, bloqueo tiempo para cada tarea, y delego si es necesario', level: 3 },
+                    { text: 'Me concentro en las tareas que deben ser entregadas primero', level: 2 },
+                    { text: 'Le pido a mi supervisor que me ayude a priorizar las tareas', level: 1 }
                 ]
             },
             {
@@ -950,10 +764,10 @@
                 dimension: 'organizacional',
                 text: 'Tu carga de trabajo ha aumentado y algunas tareas no tienen una fecha de entrega inmediata. ¿Cómo decides qué hacer tú mismo y qué delegas?',
                 options: [
-                    { text: 'Analizo el impacto y la urgencia de cada tarea, delego para optimizar el trabajo del equipo y me concentro en lo que requiere mi atención, monitoreando constantemente el proceso', level: 4, originalOrder: 'd' },
-                    { text: 'Identifico qué tareas requieren mi enfoque directo y cuáles pueden ser delegadas, aunque en ocasiones termino asumiendo más trabajo del que debería', level: 3, originalOrder: 'c' },
-                    { text: 'Delego algunas tareas urgentes cuando es necesario, sin embargo me siento más seguro haciendo las cosas por mi cuenta', level: 2, originalOrder: 'b' },
-                    { text: 'Trato de encargarme personalmente para asegurarme de que salga bien, aunque a veces termino sobrecargado y postergando otras tareas', level: 1, originalOrder: 'a' }
+                    { text: 'Analizo el impacto y la urgencia de cada tarea, delego para optimizar el trabajo del equipo y me concentro en lo que requiere mi atención, monitoreando constantemente el proceso', level: 4 },
+                    { text: 'Identifico qué tareas requieren mi enfoque directo y cuáles pueden ser delegadas, aunque en ocasiones termino asumiendo más trabajo del que debería', level: 3 },
+                    { text: 'Delego algunas tareas urgentes cuando es necesario, sin embargo me siento más seguro haciendo las cosas por mi cuenta', level: 2 },
+                    { text: 'Trato de encargarme personalmente para asegurarme de que salga bien, aunque a veces termino sobrecargado y postergando otras tareas', level: 1 }
                 ]
             },
             {
@@ -961,10 +775,10 @@
                 dimension: 'politica',
                 text: 'Cuando un compañero nuevo se integra al equipo, ¿cómo gestionas la relación con él o ella?',
                 options: [
-                    { text: 'Busco crear una relación de confianza y colaboración, aprovechando su experiencia y sumando su perspectiva al equipo', level: 4, originalOrder: 'd' },
-                    { text: 'Lo integro de manera progresiva al equipo, asegurándome de que se sienta cómodo y apoyado', level: 3, originalOrder: 'c' },
-                    { text: 'Me muestro amigable y establezco una relación de compañerismo desde el principio', level: 2, originalOrder: 'b' },
-                    { text: 'Primero observo, y luego me acerco cuando tengo una idea clara de su manera de desenvolverse', level: 1, originalOrder: 'a' }
+                    { text: 'Busco crear una relación de confianza y colaboración, aprovechando su experiencia y sumando su perspectiva al equipo', level: 4 },
+                    { text: 'Lo integro de manera progresiva al equipo, asegurándome de que se sienta cómodo y apoyado', level: 3 },
+                    { text: 'Me muestro amigable y establezco una relación de compañerismo desde el principio', level: 2 },
+                    { text: 'Primero observo, y luego me acerco cuando tengo una idea clara de su manera de desenvolverse', level: 1 }
                 ]
             },
             {
@@ -972,10 +786,10 @@
                 dimension: 'politica',
                 text: '¿Cómo te sientes al interactuar con diferentes personas de la agencia, independientemente de su puesto o área?',
                 options: [
-                    { text: 'Hablo con confianza con todos los miembros de la agencia, manteniendo una relación profesional y fluida', level: 4, originalOrder: 'd' },
-                    { text: 'Interactúo sin problema con la mayoría de las personas, aunque algunas conversaciones pueden ser más difíciles que otras', level: 3, originalOrder: 'c' },
-                    { text: 'Hablo con confianza con mis colegas y me siento menos cómodo con aquellos en puestos más altos o con roles diferentes al mío', level: 2, originalOrder: 'b' },
-                    { text: 'Me siento más cómodo al interactuar principalmente con personas de mi área de trabajo', level: 1, originalOrder: 'a' }
+                    { text: 'Hablo con confianza con todos los miembros de la agencia, manteniendo una relación profesional y fluida', level: 4 },
+                    { text: 'Interactúo sin problema con la mayoría de las personas, aunque algunas conversaciones pueden ser más difíciles que otras', level: 3 },
+                    { text: 'Hablo con confianza con mis colegas y me siento menos cómodo con aquellos en puestos más altos o con roles diferentes al mío', level: 2 },
+                    { text: 'Me siento más cómodo al interactuar principalmente con personas de mi área de trabajo', level: 1 }
                 ]
             },
             {
@@ -983,10 +797,10 @@
                 dimension: 'politica',
                 text: '¿Cómo manejas la relación y comunicación con otros stakeholders del holding?',
                 options: [
-                    { text: 'Mantengo una comunicación fluida con todos, asegurando que estemos alineados en los objetivos', level: 4, originalOrder: 'd' },
-                    { text: 'Busco colaborar con otros equipos, aunque no tengamos muchos temas en común', level: 3, originalOrder: 'c' },
-                    { text: 'Me comunico cuando es necesario, sin embargo prefiero que mi supervisor sea quien me conecte con otros equipos', level: 2, originalOrder: 'b' },
-                    { text: 'Conozco pocas personas porque no he tenido la oportunidad de interactuar, dada la naturaleza de mi cargo', level: 1, originalOrder: 'a' }
+                    { text: 'Mantengo una comunicación fluida con todos, asegurando que estemos alineados en los objetivos', level: 4 },
+                    { text: 'Busco colaborar con otros equipos, aunque no tengamos muchos temas en común', level: 3 },
+                    { text: 'Me comunico cuando es necesario, sin embargo prefiero que mi supervisor sea quien me conecte con otros equipos', level: 2 },
+                    { text: 'Conozco pocas personas porque no he tenido la oportunidad de interactuar, dada la naturaleza de mi cargo', level: 1 }
                 ]
             },
             {
@@ -994,10 +808,10 @@
                 dimension: 'politica',
                 text: '¿En qué medida participas en eventos de la industria y cómo te perciben los proveedores y clientes?',
                 options: [
-                    { text: 'Asisto regularmente a eventos, comparto conocimientos y soy reconocido como referente en mi área', level: 5, originalOrder: 'd' },
-                    { text: 'Participo en algunos eventos de la industria y soy reconocido ocasionalmente por proveedores o clientes', level: 3, originalOrder: 'c' },
-                    { text: 'Acepto invitaciones cuando me llegan, porque quiero aprender, aunque no suelo buscar oportunidades para participar', level: 2, originalOrder: 'b' },
-                    { text: 'Participo muy poco en eventos, no suelo recibir tantas invitaciones y en la industria aún no soy muy reconocido', level: 1, originalOrder: 'a' }
+                    { text: 'Asisto regularmente a eventos, comparto conocimientos y soy reconocido como referente en mi área', level: 5 },
+                    { text: 'Participo en algunos eventos de la industria y soy reconocido ocasionalmente por proveedores o clientes', level: 3 },
+                    { text: 'Acepto invitaciones cuando me llegan, porque quiero aprender, aunque no suelo buscar oportunidades para participar', level: 2 },
+                    { text: 'Participo muy poco en eventos, no suelo recibir tantas invitaciones y en la industria aún no soy muy reconocido', level: 1 }
                 ]
             },
             {
@@ -1005,34 +819,31 @@
                 dimension: 'politica',
                 text: '¿Cómo gestionas tus relaciones profesionales para fomentar tu red de contactos?',
                 options: [
-                    { text: 'Busco generar relaciones de largo plazo con diferentes equipos y stakeholders', level: 5, originalOrder: 'd' },
-                    { text: 'Participo constantemente en actividades interdepartamentales y de networking, construyendo relaciones que me ayudan a colaborar', level: 3, originalOrder: 'c' },
-                    { text: 'Mantengo algunas relaciones laborales, y estoy procurando expandir mi red de contactos', level: 2, originalOrder: 'b' },
-                    { text: 'Trabajo de manera individual, aún no conozco a muchas personas pero me gustaría construir relacionamiento', level: 1, originalOrder: 'a' }
+                    { text: 'Busco generar relaciones de largo plazo con diferentes equipos y stakeholders', level: 5 },
+                    { text: 'Participo constantemente en actividades interdepartamentales y de networking, construyendo relaciones que me ayudan a colaborar', level: 3 },
+                    { text: 'Mantengo algunas relaciones laborales, y estoy procurando expandir mi red de contactos', level: 2 },
+                    { text: 'Trabajo de manera individual, aún no conozco a muchas personas pero me gustaría construir relacionamiento', level: 1 }
                 ]
             }
         ];
 
-        // DESCRIPCIONES DE RESULTADOS
+        // DESCRIPCIONES
         const resultDescriptions = {
             exploradorCreativo: {
-                title: 'Explorador Creativo',
-                description: 'Te encuentras en una etapa de descubrimiento, aprendiendo las bases y adquiriendo experiencia. A medida que exploras el mundo de tu área, sigues desarrollando las habilidades necesarias para avanzar. Este es el momento de poner a prueba tus ideas y aprender de cada experiencia. La curiosidad y las ganas de mejorar son tus mejores aliados en este camino hacia la maestría.'
+                title: 'Explorador Creativo'
             },
             creadorEnEvolucion: {
-                title: 'Creador en Evolución',
-                description: 'Estás comenzando a pulir tu estilo y tus habilidades. Aunque aún estás perfeccionando tu enfoque, ya has logrado entender y aplicar los fundamentos de tu área. Tu capacidad de aprender rápidamente y de adaptarte a nuevas situaciones te permite afrontar proyectos con confianza, aunque todavía tienes espacio para desarrollar una mayor autonomía en tu trabajo.'
+                title: 'Creador en Evolución'
             },
             arquitectoDeIdeas: {
-                title: 'Arquitecto de Ideas',
-                description: 'Tu experiencia y capacidad para tomar decisiones informadas se han consolidado. Ya no dependes de la supervisión constante y comienzas a tomar las riendas de tus proyectos. Eres capaz de conceptualizar ideas y soluciones que aportan valor al equipo, y te sientes cómodo en roles de mayor responsabilidad. Tu habilidad para gestionar tareas de manera eficiente te posiciona como un profesional cada vez más autónomo.'
+                title: 'Arquitecto de Ideas'
             },
             catalizadorDeProgreso: {
-                title: 'Catalizador de Progreso',
-                description: 'Tu dominio del campo es amplio y profundo. Eres capaz de liderar proyectos complejos, manejar equipos y tomar decisiones estratégicas que impactan positivamente los resultados. Tu enfoque proactivo y tu habilidad para identificar oportunidades te colocan como un referente dentro de tu área, inspirando a otros con tus soluciones innovadoras y tu visión estratégica.'
+                title: 'Catalizador de Progreso'
             }
         };
 
+        // VARIABLES
         let currentQuestion = 0;
         let formDataCollected = {};
         let answers = {};
@@ -1043,21 +854,10 @@
             politica: []
         };
 
-        // FUNCIONES PRINCIPALES
-        function startTest() {
-            // Ya estamos en el formulario, simplemente continuar
-            return;
-        }
-
-        function goBack() {
-            // Recargar página para volver al inicio del formulario
-            location.reload();
-        }
-
+        // EVENTOS
         document.getElementById('initialFormData').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Recopilar datos del formulario
             formDataCollected = {
                 cedula: document.getElementById('cedula').value,
                 nombre: document.getElementById('nombre').value,
@@ -1071,13 +871,12 @@
             };
 
             if (formDataCollected.proyectos.length === 0) {
-                showError('Por favor selecciona al menos un tipo de proyecto que te entusiasme');
+                alert('Por favor selecciona al menos un proyecto');
                 return;
             }
 
-            // Iniciar test
-            document.getElementById('initialForm').style.display = 'none';
-            document.getElementById('testSection').style.display = 'block';
+            document.getElementById('initialForm').classList.add('hidden');
+            document.getElementById('testSection').classList.add('visible');
             loadQuestion();
         });
 
@@ -1089,29 +888,28 @@
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
             
-            // Desordenar opciones
             const shuffled = [...question.options].sort(() => Math.random() - 0.5);
             
-            shuffled.forEach((option, index) => {
+            shuffled.forEach((option) => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'option-btn';
                 btn.textContent = option.text;
                 btn.dataset.level = option.level;
-                btn.dataset.questionId = question.id;
                 
                 if (answers[currentQuestion] === option.level) {
                     btn.classList.add('selected');
                 }
                 
                 btn.onclick = function() {
-                    selectAnswer(currentQuestion, option.level);
+                    answers[currentQuestion] = option.level;
+                    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
                 };
                 
                 optionsContainer.appendChild(btn);
             });
             
-            // Actualizar botones de navegación
             document.getElementById('btnPrev').disabled = currentQuestion === 0;
             
             const btnNext = document.getElementById('btnNext');
@@ -1123,25 +921,12 @@
                 btnNext.classList.remove('submit-test');
             }
             
-            // Actualizar barra de progreso
             document.getElementById('progressFill').style.width = ((currentQuestion + 1) / 20) * 100 + '%';
-        }
-
-        function selectAnswer(questionIndex, level) {
-            answers[questionIndex] = level;
-            
-            // Actualizar UI
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.classList.remove('selected');
-                if (parseInt(btn.dataset.level) === level) {
-                    btn.classList.add('selected');
-                }
-            });
         }
 
         function nextQuestion() {
             if (answers[currentQuestion] === undefined) {
-                showError('Por favor selecciona una respuesta antes de continuar');
+                alert('Por favor selecciona una respuesta');
                 return;
             }
             
@@ -1152,29 +937,23 @@
             
             currentQuestion++;
             loadQuestion();
-            document.querySelector('.question-container').scrollIntoView({ behavior: 'smooth' });
         }
 
         function previousQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
                 loadQuestion();
-                document.querySelector('.question-container').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
         function submitTest() {
-            // Calcular resultados
             calculateResults();
             
-            // Mostrar resultados
-            document.getElementById('testSection').style.display = 'none';
-            document.getElementById('resultsSection').style.display = 'block';
-            document.querySelector('.result-card').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('testSection').classList.remove('visible');
+            document.getElementById('resultsSection').classList.add('visible');
         }
 
         function calculateResults() {
-            // Agrupar respuestas por dimensión
             testData.forEach((question, index) => {
                 const answer = answers[index];
                 if (answer !== undefined) {
@@ -1182,7 +961,6 @@
                 }
             });
             
-            // Calcular promedios por dimensión
             const averages = {};
             for (let dimension in dimensionScores) {
                 const scores = dimensionScores[dimension];
@@ -1190,11 +968,9 @@
                 averages[dimension] = parseFloat(average.toFixed(2));
             }
             
-            // Calcular promedio general
             const allScores = Object.values(averages);
             const generalAverage = allScores.reduce((a, b) => a + b, 0) / allScores.length;
             
-            // Determinar perfil
             let profile = '';
             let imageKey = '';
             if (generalAverage >= 3.5) {
@@ -1211,21 +987,14 @@
                 imageKey = 'exploradorCreativo';
             }
             
-            // Mostrar resultado
             const desc = resultDescriptions[profile];
             document.getElementById('resultTitle').textContent = desc.title;
-            // Descripción quitada - solo mostrar imagen y título
             
-            // Mostrar imagen (necesitaremos cargarlas)
             const imageSrc = getImageSource(imageKey);
             document.getElementById('resultImage').src = imageSrc;
-            
-            // Guardar en Google Sheets
-            saveToGoogleSheets(profile, averages);
         }
 
         function getImageSource(imageKey) {
-            // Cargar imágenes PNG directamente desde GitHub
             const imageMap = {
                 exploradorCreativo: 'EXPLORADOR CREATIVO.png',
                 creadorEnEvolucion: 'CREADOR EN EVOLUCIÓN.png',
@@ -1233,54 +1002,6 @@
                 catalizadorDeProgreso: 'CATALIZADOR DE PROGRESO.png'
             };
             return imageMap[imageKey] || '';
-        }
-
-        function saveToGoogleSheets(profile, averages) {
-            const data = {
-                cedula: formDataCollected.cedula,
-                nombre: formDataCollected.nombre,
-                email: formDataCollected.email,
-                agencia: formDataCollected.agencia,
-                cargo: formDataCollected.cargo,
-                area: formDataCollected.area,
-                antiguedadTexo: formDataCollected.antiguedadTexo,
-                antiguedadIndustria: formDataCollected.antiguedadIndustria,
-                proyectos: formDataCollected.proyectos.join(', '),
-                profile: profile,
-                tecnica: averages.tecnica,
-                administrativa: averages.administrativa,
-                organizacional: averages.organizacional,
-                politica: averages.politica,
-                fecha: new Date().toLocaleString()
-            };
-            
-            // REEMPLAZAR CON TU URL DE GOOGLE APPS SCRIPT DEPLOYMENT
-            const GOOGLE_SHEET_URL = 'TU_URL_AQUI'; // Se obtiene al desplegar Google Apps Script
-            
-            if (GOOGLE_SHEET_URL === 'TU_URL_AQUI') {
-                console.log('Nota: Para guardar en Google Sheets, necesitas desplegar el Google Apps Script y reemplazar la URL');
-                console.log('Datos que se guardarían:', data);
-                return;
-            }
-            
-            fetch(GOOGLE_SHEET_URL, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
-                    console.log('✓ Datos guardados en Google Sheets correctamente');
-                } else {
-                    console.error('✗ Error al guardar:', result.error);
-                }
-            })
-            .catch(error => {
-                console.error('✗ Error en la solicitud:', error);
-            });
         }
 
         function restartTest() {
@@ -1294,17 +1015,14 @@
             };
             formDataCollected = {};
             
-            document.getElementById('resultsSection').style.display = 'none';
-            document.getElementById('splashScreen').style.display = 'flex';
-        }
-
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            errorDiv.textContent = message;
-            errorDiv.classList.add('show');
-            setTimeout(() => {
-                errorDiv.classList.remove('show');
-            }, 4000);
+            document.getElementById('resultsSection').classList.remove('visible');
+            document.getElementById('testSection').classList.remove('visible');
+            document.getElementById('initialForm').classList.remove('hidden');
+            
+            // Limpiar formulario
+            document.getElementById('initialFormData').reset();
+            
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
