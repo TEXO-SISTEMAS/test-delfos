@@ -976,6 +976,11 @@
                 profile: getProfileName()
             };
             
+            // Agregar respuestas individuales
+            for (let i = 0; i < 20; i++) {
+                dataToSend['pregunta' + (i + 1)] = answers[i] || '';
+            }
+            
             // Enviar a Google Sheets
             sendToGoogleSheets(dataToSend);
             
