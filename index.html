@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Delfos - Descubre tu Estilo Profesional</title>
+    <script src="image_base64.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #FF6B35;
+            --primary-red: #E83C2A;
+            --secondary-blue: #004E89;
+            --secondary-teal: #2B9FA3;
+            --accent-yellow: #FFC857;
+            --light-cream: #FFF4E6;
+            --dark-text: #1A1A1A;
+            --light-text: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ===== SECCIÓN PORTADA ===== */
+        .splash-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--light-cream) 0%, #fff9f0 100%);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .splash-logo-container {
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .splash-logo-container img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .splash-content h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .splash-content p {
+            font-size: 1.2em;
+            color: var(--secondary-blue);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn-start:active {
+            transform: translateY(-1px);
+        }
+
+        /* ===== FORMULARIO INICIAL ===== */
+        .initial-form {
+            display: none;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .form-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            font-size: 2em;
+            color: var(--secondary-blue);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .form-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--accent-yellow));
+            border-radius: 2px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-blue);
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+            background-color: rgba(255, 107, 53, 0.02);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-row-projects {
+            grid-template-columns: 1fr;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .project-checkbox {
+            display: flex;
+            align-items: center;
+        }
+
+        .project-checkbox input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .project-checkbox label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--dark-text);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-teal));
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 78, 137, 0.3);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 78, 137, 0.4);
+        }
+
+        .btn-back {
+            background: #f0f0f0;
+            color: var(--dark-text);
+            border: 2px solid #ddd;
+            padding: 14px 40px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-back:hover {
+            background: #e0e0e0;
+            border-color: #999;
+        }
+
+        /* ===== SECCIÓN TEST ===== */
+        .test-section {
+            display: none;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-orange), var(--accent-yellow));
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+
+        .question-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        .question-number {
+            color: var(--primary-orange);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-size: 1.6em;
+            color: var(--secondary-blue);
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-orange);
+            background: rgba(255, 107, 53, 0.05);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            color: white;
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: space-between;
+        }
+
+        .btn-prev,
+        .btn-next {
+            padding: 12px 30px;
+            border: 2px solid var(--primary-orange);
+            background: white;
+            color: var(--primary-orange);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .btn-prev:hover:not(:disabled),
+        .btn-next:hover:not(:disabled) {
+            background: var(--primary-orange);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-prev:disabled,
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-next.submit-test {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-teal));
+            color: white;
+            border-color: var(--secondary-blue);
+        }
+
+        .btn-next.submit-test:hover {
+            background: linear-gradient(135deg, var(--secondary-teal), var(--secondary-blue));
+            box-shadow: 0 10px 30px rgba(0, 78, 137, 0.4);
+        }
+
+        /* ===== RESULTADOS ===== */
+        .results-section {
+            display: none;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--light-cream) 0%, #fff9f0 100%);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-yellow), transparent);
+            opacity: 0.2;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .result-image {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            animation: scaleInUp 0.6s ease-out;
+        }
+
+        .result-title {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 20px;
+            animation: slideInUp 0.6s ease-out 0.1s both;
+        }
+
+        .result-description {
+            font-size: 1.15em;
+            color: var(--dark-text);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            animation: slideInUp 0.6s ease-out 0.2s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            animation: slideInUp 0.6s ease-out 0.3s both;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #999;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            color: var(--primary-orange);
+            font-weight: 700;
+        }
+
+        .result-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            animation: slideInUp 0.6s ease-out 0.4s both;
+        }
+
+        .btn-download,
+        .btn-new-test {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn-new-test {
+            background: white;
+            color: var(--secondary-blue);
+            border: 2px solid var(--secondary-blue);
+            box-shadow: 0 5px 15px rgba(0, 78, 137, 0.2);
+        }
+
+        .btn-new-test:hover {
+            background: var(--secondary-blue);
+            color: white;
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes scaleInUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .splash-content h1 {
+                font-size: 2em;
+            }
+
+            .splash-content p {
+                font-size: 1em;
+            }
+
+            .question-text {
+                font-size: 1.3em;
+            }
+
+            .result-title {
+                font-size: 2em;
+            }
+
+            .form-container,
+            .question-container,
+            .result-card {
+                padding: 30px 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ERROR MESSAGE ===== */
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SPLASH SCREEN -->
+        <div class="splash-screen" id="splashScreen">
+            <div class="splash-content">
+                <div class="splash-logo-container">
+                    <img src="" alt="Test Delfos" id="splashImage">
+                </div>
+                <h1>Test Delfos</h1>
+                <p>Descubre tu estilo único como profesional en la publicidad. A través de preguntas reflexivas sobre cómo gestionas proyectos, te relacionas y tomas decisiones, obtendrás una visión clara de tu perfil.</p>
+                <p style="font-size: 0.95em; color: #666; margin-top: 20px;">No hay respuestas correctas ni incorrectas. ¡Es momento de conocerte mejor!</p>
+                <button class="btn-start" onclick="startTest()">Iniciar Test</button>
+            </div>
+        </div>
+
+        <!-- FORMULARIO INICIAL -->
+        <div class="initial-form" id="initialForm">
+            <div class="form-container">
+                <h2>Cuéntanos Sobre Ti</h2>
+                <div class="error-message" id="errorMessage"></div>
+                
+                <form id="initialFormData">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cedula">Número de Cédula *</label>
+                            <input type="text" id="cedula" name="cedula" placeholder="Ej: 12345678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre y Apellido *</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cargo">Cargo *</label>
+                            <input type="text" id="cargo" name="cargo" placeholder="Tu cargo actual" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agencia">Agencia *</label>
+                            <select id="agencia" name="agencia" required>
+                                <option value="">Selecciona una agencia</option>
+                                <option value="BRICK">BRICK</option>
+                                <option value="LUPE">LUPE</option>
+                                <option value="OMD">OMD</option>
+                                <option value="NASTA">NASTA</option>
+                                <option value="ROGER">ROGER</option>
+                                <option value="ROW">ROW</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Área *</label>
+                            <select id="area" name="area" required>
+                                <option value="">Selecciona un área</option>
+                                <option value="Administración">Administración</option>
+                                <option value="Arte y Creatividad">Arte y Creatividad</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Cuentas">Cuentas</option>
+                                <option value="Gerencia General">Gerencia General</option>
+                                <option value="Medios Digitales">Medios Digitales</option>
+                                <option value="Medios Tradicionales">Medios Tradicionales</option>
+                                <option value="PR">PR</option>
+                                <option value="Producción">Producción</option>
+                                <option value="Social Media">Social Media</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="antiguedadTexo">Años en Texo *</label>
+                            <select id="antiguedadTexo" name="antiguedadTexo" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="0 meses a 1 año">0 meses a 1 año</option>
+                                <option value="1 año a 3 años">1 año a 3 años</option>
+                                <option value="3 años a 5 años">3 años a 5 años</option>
+                                <option value="Mas de 5 años">Más de 5 años</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="antiguedadIndustria">Años en la Industria *</label>
+                            <select id="antiguedadIndustria" name="antiguedadIndustria" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="0 meses a 1 año">0 meses a 1 año</option>
+                                <option value="1 año a 3 años">1 año a 3 años</option>
+                                <option value="3 años a 5 años">3 años a 5 años</option>
+                                <option value="Mas de 5 años">Más de 5 años</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-projects">
+                        <div class="form-group">
+                            <label>Tipos de Proyectos que te Entusiasman *</label>
+                            <div class="projects-grid">
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj1" name="proyectos" value="Design Thinking">
+                                    <label for="proj1">Design Thinking</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj2" name="proyectos" value="Human-Centered Design (HCD)">
+                                    <label for="proj2">Human-Centered Design</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj3" name="proyectos" value="User Research">
+                                    <label for="proj3">User Research</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj4" name="proyectos" value="Innovación en Medios">
+                                    <label for="proj4">Innovación en Medios</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj5" name="proyectos" value="Creatividad Estratégica">
+                                    <label for="proj5">Creatividad Estratégica</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj6" name="proyectos" value="Customer Experience (CX)">
+                                    <label for="proj6">Customer Experience</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj7" name="proyectos" value="Data-Driven Creativity">
+                                    <label for="proj7">Data-Driven Creativity</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj8" name="proyectos" value="Service Design">
+                                    <label for="proj8">Service Design</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj9" name="proyectos" value="Metodologías Ágiles">
+                                    <label for="proj9">Metodologías Ágiles</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj10" name="proyectos" value="Storytelling">
+                                    <label for="proj10">Storytelling</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj11" name="proyectos" value="IA aplicada">
+                                    <label for="proj11">IA aplicada</label>
+                                </div>
+                                <div class="project-checkbox">
+                                    <input type="checkbox" id="proj12" name="proyectos" value="Prototipado y Testing">
+                                    <label for="proj12">Prototipado y Testing</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="goBack()">Volver</button>
+                        <button type="submit" class="btn-submit">Continuar con el Test</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- SECCIÓN TEST -->
+        <div class="test-section" id="testSection">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question-container">
+                <div class="question-number" id="questionNumber">Pregunta 1 de 20</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="options-container" id="optionsContainer"></div>
+                <div class="navigation-buttons">
+                    <button class="btn-prev" id="btnPrev" onclick="previousQuestion()" disabled>← Anterior</button>
+                    <button class="btn-next" id="btnNext" onclick="nextQuestion()">Siguiente →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN RESULTADOS -->
+        <div class="results-section" id="resultsSection">
+            <div class="result-card">
+                <img id="resultImage" class="result-image" src="" alt="Resultado">
+                <h2 class="result-title" id="resultTitle"></h2>
+                <p class="result-description" id="resultDescription"></p>
+                
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Dimensión Técnica</div>
+                        <div class="stat-value" id="statTecnica">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Dimensión Administrativa</div>
+                        <div class="stat-value" id="statAdministrativa">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Dimensión Organizacional</div>
+                        <div class="stat-value" id="statOrganizacional">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Dimensión Política</div>
+                        <div class="stat-value" id="statPolitica">-</div>
+                    </div>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="btn-download" onclick="downloadResult()">📥 Descargar Resultado</button>
+                    <button class="btn-new-test" onclick="restartTest()">🔄 Nuevo Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Principal -->
+    <script>
+        // BASE64 DE LAS IMÁGENES (se cargan del archivo image_base64.js)
+        // Si BASE64_IMAGES no está disponible, usar placeholders
+        const images = {
+            splash: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.splash : '',
+            exploradorCreativo: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.explorador : '',
+            creadorEnEvolucion: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.creador : '',
+            arquitectoDeIdeas: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.arquitecto : '',
+            catalizadorDeProgreso: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.catalizador : ''
+        };
+
+        // Establecer imagen de splash cuando la página carga
+        window.addEventListener('load', function() {
+            if (images.splash) {
+                document.getElementById('splashImage').src = images.splash;
+            }
+        });
+
+        // DATOS DEL TEST
+        const testData = [
+            {
+                id: 1,
+                dimension: 'tecnica',
+                text: 'Un cliente solicita una solución innovadora para su proyecto, con un brief poco claro. ¿Cómo desarrollás la propuesta?',
+                options: [
+                    { text: 'Propongo una solución luego de haber hecho un diagnóstico y haber conversado con el cliente', level: 4, originalOrder: 'd' },
+                    { text: 'Investigo referencias adicionales y propongo alternativas viables', level: 3, originalOrder: 'c' },
+                    { text: 'Presento ideas basadas en prácticas comunes del mercado optimizando el tiempo', level: 2, originalOrder: 'b' },
+                    { text: 'Solicito directrices a nivel interno antes de avanzar', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 2,
+                dimension: 'tecnica',
+                text: 'Te asignan un proyecto, pero los insumos que recibes tienen limitaciones en calidad o precisión. ¿Cómo manejas la situación?',
+                options: [
+                    { text: 'Desarrollo soluciones para mejorar la calidad del resultado final', level: 4, originalOrder: 'd' },
+                    { text: 'Propongo evaluar alternativas y negocio el tiempo', level: 3, originalOrder: 'c' },
+                    { text: 'Intento optimizar el entregable con los recursos que tengo', level: 2, originalOrder: 'b' },
+                    { text: 'Trabajo con lo disponible sin hacer modificaciones', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 3,
+                dimension: 'tecnica',
+                text: 'Un proyecto requiere que utilices una nueva metodología. ¿Cómo actúas?',
+                options: [
+                    { text: 'Aplico una estrategia basada en la investigación previa integrando otras metodologías', level: 4, originalOrder: 'd' },
+                    { text: 'Investigo recursos existentes y los aplico al proyecto', level: 3, originalOrder: 'c' },
+                    { text: 'Consulto con colegas que tengan experiencia y pido su apoyo para la primera implementación', level: 2, originalOrder: 'b' },
+                    { text: 'Pregunto si existe un modelo anterior que me sirva de guía', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 4,
+                dimension: 'tecnica',
+                text: 'Me sumo a un equipo de trabajo para desarrollar un nuevo proyecto. ¿Qué haces?',
+                options: [
+                    { text: 'Exploro y propongo alternativas para realizar las tareas', level: 4, originalOrder: 'd' },
+                    { text: 'Aplico mis conocimientos en base a mi experiencia', level: 3, originalOrder: 'c' },
+                    { text: 'Me muestro dispuesto a aprender y colaborar', level: 2, originalOrder: 'b' },
+                    { text: 'Aguardo la capacitación u orientación necesaria', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 5,
+                dimension: 'tecnica',
+                text: 'Se presenta un problema antes de la entrega final de un proyecto. ¿Cómo manejas la situación?',
+                options: [
+                    { text: 'Hago las correcciones necesarias, informo al cliente y llego a un nuevo acuerdo', level: 4, originalOrder: 'd' },
+                    { text: 'Corroboro la gravedad del problema, hago los ajustes más urgentes y dejo el resto para revisar en una segunda entrega', level: 3, originalOrder: 'c' },
+                    { text: 'Informo al equipo para ver con qué se puede llegar a entregar', level: 2, originalOrder: 'b' },
+                    { text: 'Consulto internamente qué debo hacer', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 6,
+                dimension: 'administrativa',
+                text: 'Se te asigna un proyecto con recursos limitados y un plazo ajustado. ¿Cómo procedes?',
+                options: [
+                    { text: 'Propongo formas para reestructurar el proyecto, priorizando los aspectos fundamentales sin comprometer la calidad', level: 4, originalOrder: 'd' },
+                    { text: 'Reviso el alcance del proyecto, identifico áreas donde se pueda reducir recursos sin comprometer los resultados finales', level: 3, originalOrder: 'c' },
+                    { text: 'Priorizo las tareas claves dentro del límite de recursos con los cuales se cuenta y busco cumplir con lo esencial', level: 2, originalOrder: 'b' },
+                    { text: 'Sigo el plan inicial y hago algunos cambios para ajustarme a los deadlines', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 7,
+                dimension: 'administrativa',
+                text: 'Estás involucrado en un proyecto que implica varios proveedores trabajando en diferentes áreas. ¿Cómo gestionas la situación?',
+                options: [
+                    { text: 'Establezco un sistema de coordinación entre los proveedores, defino objetivos claros para cada uno, gestionando la complejidad', level: 4, originalOrder: 'd' },
+                    { text: 'Propongo un cronograma detallado con hitos intermedios para garantizar que todos los proveedores se mantengan en el camino', level: 3, originalOrder: 'c' },
+                    { text: 'Realizo un seguimiento de las entregas, pero sin intervenir demasiado en el proceso', level: 2, originalOrder: 'b' },
+                    { text: 'Confío en que los proveedores cumplan con sus responsabilidades según el acuerdo', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 8,
+                dimension: 'administrativa',
+                text: 'En medio de un proyecto, surgen retrasos que afectan los plazos de entrega. ¿Cómo abordas la situación?',
+                options: [
+                    { text: 'Propongo un plan estratégico de optimización de procesos que, además de resolver el retraso, también mejore la eficiencia a largo plazo', level: 4, originalOrder: 'd' },
+                    { text: 'Realizo un análisis para comprender las causas raíz del retraso, propongo ajustes específicos para recuperar el tiempo y solicito nuevas fechas con el cliente', level: 3, originalOrder: 'c' },
+                    { text: 'Convoco una reunión para identificar las áreas que están causando el retraso y elevo a los supervisores para que se tomen decisiones', level: 2, originalOrder: 'b' },
+                    { text: 'Informo al equipo sobre los plazos ajustados y sigo los pasos del proceso previstos', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 9,
+                dimension: 'administrativa',
+                text: 'El equipo ha señalado que la productividad podría mejorar si optimizamos el uso de las herramientas en tu área. ¿Cómo actuarías?',
+                options: [
+                    { text: 'Realizo un análisis de las herramientas actuales, propongo nuevas soluciones tecnológicas e impulso su implementación para una mejora sostenida en la productividad', level: 4, originalOrder: 'd' },
+                    { text: 'Investigo y propongo nuevas herramientas o ajustes a las existentes, alineándome con las necesidades del equipo y los proyectos', level: 3, originalOrder: 'c' },
+                    { text: 'Me enfoco en aprender nuevas herramientas según necesidad y las aplico según me lo indiquen', level: 2, originalOrder: 'b' },
+                    { text: 'Utilizo las herramientas que están disponibles y las aplico en mis tareas', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 10,
+                dimension: 'administrativa',
+                text: 'Surge una tendencia innovadora en la industria publicitaria que impacta en tu forma de trabajar. ¿Cómo reaccionas?',
+                options: [
+                    { text: 'Me adapto rápidamente, y capacito al equipo sobre la tendencia proponiendo nuevas estrategias basadas en ella', level: 4, originalOrder: 'd' },
+                    { text: 'Investigo sobre la nueva tendencia, analizo su impacto en mi trabajo y comienzo a aplicarla progresivamente', level: 3, originalOrder: 'c' },
+                    { text: 'Me informo sobre el cambio y trato de ajustarme cuando sea necesario', level: 2, originalOrder: 'b' },
+                    { text: 'Continúo trabajando como siempre, hasta que el equipo o la empresa definan cómo adaptarse', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 11,
+                dimension: 'organizacional',
+                text: 'Un equipo debe ejecutar un proyecto con plazos ajustados y sin mucha claridad sobre el enfoque. ¿Cómo lo gestionas?',
+                options: [
+                    { text: 'Establezco un plan detallado, donde se visualizan las prioridades, para lograr llegar dentro de los tiempos establecidos', level: 4, originalOrder: 'd' },
+                    { text: 'Organizo una sesión inicial para definir el enfoque general y luego gestiono mi área de responsabilidad', level: 3, originalOrder: 'c' },
+                    { text: 'Organizo reuniones periódicas para hacer seguimiento y aclarar dudas a medida que surgen', level: 2, originalOrder: 'b' },
+                    { text: 'Trabajo a mi ritmo y resuelvo cualquier duda de manera autónoma', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 12,
+                dimension: 'organizacional',
+                text: 'Tienes varias tareas para realizar, algunas con plazos inminentes y otras de gran impacto a largo plazo. ¿Cómo organizas tu trabajo?',
+                options: [
+                    { text: 'Establezco un plan equilibrado, dando espacio a las tareas urgentes y a las importantes', level: 4, originalOrder: 'd' },
+                    { text: 'Identifico las tareas urgentes e importantes, reprogramando las menos críticas', level: 3, originalOrder: 'c' },
+                    { text: 'Enfoco mi tiempo en las tareas prioritarias, sabiendo que algunas importantes se cumplirán en otros tiempos', level: 2, originalOrder: 'b' },
+                    { text: 'Consulto con mi supervisor y priorizo las tareas de acuerdo a sus indicaciones', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 13,
+                dimension: 'organizacional',
+                text: 'Tienes un conjunto de tareas con distintos niveles de urgencia y responsabilidad. ¿Cómo gestionas tu agenda semanal?',
+                options: [
+                    { text: 'Planifico mi semana atendiendo mis prioridades de corto, mediano y largo plazo', level: 4, originalOrder: 'd' },
+                    { text: 'Estructuro mi semana por bloques de trabajo, asignando tareas específicas para cada día', level: 3, originalOrder: 'c' },
+                    { text: 'Asigno un tiempo para cada tarea según el nivel de urgencia acordado con mi supervisor, con una planificación flexible', level: 2, originalOrder: 'b' },
+                    { text: 'Realizo una lista de tareas al inicio de cada día, priorizando lo más urgente', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 14,
+                dimension: 'organizacional',
+                text: 'Te asignan varios proyectos con plazos de entrega similares. ¿Cómo distribuyes el tiempo y prioridades?',
+                options: [
+                    { text: 'Elaboro un plan de trabajo para culminar primero las tareas más sencillas, liberando tiempos suficientes para abordar las tareas de mayor complejidad', level: 4, originalOrder: 'd' },
+                    { text: 'Estructuro una agenda de acuerdo a prioridades, bloqueo tiempo para cada tarea, y delego si es necesario', level: 3, originalOrder: 'c' },
+                    { text: 'Me concentro en las tareas que deben ser entregadas primero', level: 2, originalOrder: 'b' },
+                    { text: 'Le pido a mi supervisor que me ayude a priorizar las tareas', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 15,
+                dimension: 'organizacional',
+                text: 'Tu carga de trabajo ha aumentado y algunas tareas no tienen una fecha de entrega inmediata. ¿Cómo decides qué hacer tú mismo y qué delegas?',
+                options: [
+                    { text: 'Analizo el impacto y la urgencia de cada tarea, delego para optimizar el trabajo del equipo y me concentro en lo que requiere mi atención, monitoreando constantemente el proceso', level: 4, originalOrder: 'd' },
+                    { text: 'Identifico qué tareas requieren mi enfoque directo y cuáles pueden ser delegadas, aunque en ocasiones termino asumiendo más trabajo del que debería', level: 3, originalOrder: 'c' },
+                    { text: 'Delego algunas tareas urgentes cuando es necesario, sin embargo me siento más seguro haciendo las cosas por mi cuenta', level: 2, originalOrder: 'b' },
+                    { text: 'Trato de encargarme personalmente para asegurarme de que salga bien, aunque a veces termino sobrecargado y postergando otras tareas', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 16,
+                dimension: 'politica',
+                text: 'Cuando un compañero nuevo se integra al equipo, ¿cómo gestionas la relación con él o ella?',
+                options: [
+                    { text: 'Busco crear una relación de confianza y colaboración, aprovechando su experiencia y sumando su perspectiva al equipo', level: 4, originalOrder: 'd' },
+                    { text: 'Lo integro de manera progresiva al equipo, asegurándome de que se sienta cómodo y apoyado', level: 3, originalOrder: 'c' },
+                    { text: 'Me muestro amigable y establezco una relación de compañerismo desde el principio', level: 2, originalOrder: 'b' },
+                    { text: 'Primero observo, y luego me acerco cuando tengo una idea clara de su manera de desenvolverse', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 17,
+                dimension: 'politica',
+                text: '¿Cómo te sientes al interactuar con diferentes personas de la agencia, independientemente de su puesto o área?',
+                options: [
+                    { text: 'Hablo con confianza con todos los miembros de la agencia, manteniendo una relación profesional y fluida', level: 4, originalOrder: 'd' },
+                    { text: 'Interactúo sin problema con la mayoría de las personas, aunque algunas conversaciones pueden ser más difíciles que otras', level: 3, originalOrder: 'c' },
+                    { text: 'Hablo con confianza con mis colegas y me siento menos cómodo con aquellos en puestos más altos o con roles diferentes al mío', level: 2, originalOrder: 'b' },
+                    { text: 'Me siento más cómodo al interactuar principalmente con personas de mi área de trabajo', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 18,
+                dimension: 'politica',
+                text: '¿Cómo manejas la relación y comunicación con otros stakeholders del holding?',
+                options: [
+                    { text: 'Mantengo una comunicación fluida con todos, asegurando que estemos alineados en los objetivos', level: 4, originalOrder: 'd' },
+                    { text: 'Busco colaborar con otros equipos, aunque no tengamos muchos temas en común', level: 3, originalOrder: 'c' },
+                    { text: 'Me comunico cuando es necesario, sin embargo prefiero que mi supervisor sea quien me conecte con otros equipos', level: 2, originalOrder: 'b' },
+                    { text: 'Conozco pocas personas porque no he tenido la oportunidad de interactuar, dada la naturaleza de mi cargo', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 19,
+                dimension: 'politica',
+                text: '¿En qué medida participas en eventos de la industria y cómo te perciben los proveedores y clientes?',
+                options: [
+                    { text: 'Asisto regularmente a eventos, comparto conocimientos y soy reconocido como referente en mi área', level: 5, originalOrder: 'd' },
+                    { text: 'Participo en algunos eventos de la industria y soy reconocido ocasionalmente por proveedores o clientes', level: 3, originalOrder: 'c' },
+                    { text: 'Acepto invitaciones cuando me llegan, porque quiero aprender, aunque no suelo buscar oportunidades para participar', level: 2, originalOrder: 'b' },
+                    { text: 'Participo muy poco en eventos, no suelo recibir tantas invitaciones y en la industria aún no soy muy reconocido', level: 1, originalOrder: 'a' }
+                ]
+            },
+            {
+                id: 20,
+                dimension: 'politica',
+                text: '¿Cómo gestionas tus relaciones profesionales para fomentar tu red de contactos?',
+                options: [
+                    { text: 'Busco generar relaciones de largo plazo con diferentes equipos y stakeholders', level: 5, originalOrder: 'd' },
+                    { text: 'Participo constantemente en actividades interdepartamentales y de networking, construyendo relaciones que me ayudan a colaborar', level: 3, originalOrder: 'c' },
+                    { text: 'Mantengo algunas relaciones laborales, y estoy procurando expandir mi red de contactos', level: 2, originalOrder: 'b' },
+                    { text: 'Trabajo de manera individual, aún no conozco a muchas personas pero me gustaría construir relacionamiento', level: 1, originalOrder: 'a' }
+                ]
+            }
+        ];
+
+        // DESCRIPCIONES DE RESULTADOS
+        const resultDescriptions = {
+            exploradorCreativo: {
+                title: 'Explorador Creativo',
+                description: 'Te encuentras en una etapa de descubrimiento, aprendiendo las bases y adquiriendo experiencia. A medida que exploras el mundo de tu área, sigues desarrollando las habilidades necesarias para avanzar. Este es el momento de poner a prueba tus ideas y aprender de cada experiencia. La curiosidad y las ganas de mejorar son tus mejores aliados en este camino hacia la maestría.'
+            },
+            creadorEnEvolucion: {
+                title: 'Creador en Evolución',
+                description: 'Estás comenzando a pulir tu estilo y tus habilidades. Aunque aún estás perfeccionando tu enfoque, ya has logrado entender y aplicar los fundamentos de tu área. Tu capacidad de aprender rápidamente y de adaptarte a nuevas situaciones te permite afrontar proyectos con confianza, aunque todavía tienes espacio para desarrollar una mayor autonomía en tu trabajo.'
+            },
+            arquitectoDeIdeas: {
+                title: 'Arquitecto de Ideas',
+                description: 'Tu experiencia y capacidad para tomar decisiones informadas se han consolidado. Ya no dependes de la supervisión constante y comienzas a tomar las riendas de tus proyectos. Eres capaz de conceptualizar ideas y soluciones que aportan valor al equipo, y te sientes cómodo en roles de mayor responsabilidad. Tu habilidad para gestionar tareas de manera eficiente te posiciona como un profesional cada vez más autónomo.'
+            },
+            catalizadorDeProgreso: {
+                title: 'Catalizador de Progreso',
+                description: 'Tu dominio del campo es amplio y profundo. Eres capaz de liderar proyectos complejos, manejar equipos y tomar decisiones estratégicas que impactan positivamente los resultados. Tu enfoque proactivo y tu habilidad para identificar oportunidades te colocan como un referente dentro de tu área, inspirando a otros con tus soluciones innovadoras y tu visión estratégica.'
+            }
+        };
+
+        let currentQuestion = 0;
+        let formDataCollected = {};
+        let answers = {};
+        let dimensionScores = {
+            tecnica: [],
+            administrativa: [],
+            organizacional: [],
+            politica: []
+        };
+
+        // FUNCIONES PRINCIPALES
+        function startTest() {
+            document.getElementById('splashScreen').style.display = 'none';
+            document.getElementById('initialForm').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('initialForm').style.display = 'none';
+            document.getElementById('splashScreen').style.display = 'flex';
+        }
+
+        document.getElementById('initialFormData').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Recopilar datos del formulario
+            formDataCollected = {
+                cedula: document.getElementById('cedula').value,
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                agencia: document.getElementById('agencia').value,
+                cargo: document.getElementById('cargo').value,
+                area: document.getElementById('area').value,
+                antiguedadTexo: document.getElementById('antiguedadTexo').value,
+                antiguedadIndustria: document.getElementById('antiguedadIndustria').value,
+                proyectos: Array.from(document.querySelectorAll('input[name="proyectos"]:checked')).map(cb => cb.value)
+            };
+
+            if (formDataCollected.proyectos.length === 0) {
+                showError('Por favor selecciona al menos un tipo de proyecto que te entusiasme');
+                return;
+            }
+
+            // Iniciar test
+            document.getElementById('initialForm').style.display = 'none';
+            document.getElementById('testSection').style.display = 'block';
+            loadQuestion();
+        });
+
+        function loadQuestion() {
+            const question = testData[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Pregunta ${currentQuestion + 1} de 20`;
+            document.getElementById('questionText').textContent = question.text;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            // Desordenar opciones
+            const shuffled = [...question.options].sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'option-btn';
+                btn.textContent = option.text;
+                btn.dataset.level = option.level;
+                btn.dataset.questionId = question.id;
+                
+                if (answers[currentQuestion] === option.level) {
+                    btn.classList.add('selected');
+                }
+                
+                btn.onclick = function() {
+                    selectAnswer(currentQuestion, option.level);
+                };
+                
+                optionsContainer.appendChild(btn);
+            });
+            
+            // Actualizar botones de navegación
+            document.getElementById('btnPrev').disabled = currentQuestion === 0;
+            
+            const btnNext = document.getElementById('btnNext');
+            if (currentQuestion === 19) {
+                btnNext.textContent = 'Enviar →';
+                btnNext.classList.add('submit-test');
+            } else {
+                btnNext.textContent = 'Siguiente →';
+                btnNext.classList.remove('submit-test');
+            }
+            
+            // Actualizar barra de progreso
+            document.getElementById('progressFill').style.width = ((currentQuestion + 1) / 20) * 100 + '%';
+        }
+
+        function selectAnswer(questionIndex, level) {
+            answers[questionIndex] = level;
+            
+            // Actualizar UI
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if (parseInt(btn.dataset.level) === level) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestion] === undefined) {
+                showError('Por favor selecciona una respuesta antes de continuar');
+                return;
+            }
+            
+            if (currentQuestion === 19) {
+                submitTest();
+                return;
+            }
+            
+            currentQuestion++;
+            loadQuestion();
+            document.querySelector('.question-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+                document.querySelector('.question-container').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function submitTest() {
+            // Calcular resultados
+            calculateResults();
+            
+            // Mostrar resultados
+            document.getElementById('testSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'block';
+            document.querySelector('.result-card').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function calculateResults() {
+            // Agrupar respuestas por dimensión
+            testData.forEach((question, index) => {
+                const answer = answers[index];
+                if (answer !== undefined) {
+                    dimensionScores[question.dimension].push(answer);
+                }
+            });
+            
+            // Calcular promedios por dimensión
+            const averages = {};
+            for (let dimension in dimensionScores) {
+                const scores = dimensionScores[dimension];
+                const average = scores.reduce((a, b) => a + b, 0) / scores.length;
+                averages[dimension] = parseFloat(average.toFixed(2));
+            }
+            
+            // Calcular promedio general
+            const allScores = Object.values(averages);
+            const generalAverage = allScores.reduce((a, b) => a + b, 0) / allScores.length;
+            
+            // Determinar perfil
+            let profile = '';
+            let imageKey = '';
+            if (generalAverage >= 3.5) {
+                profile = 'catalizadorDeProgreso';
+                imageKey = 'catalizadorDeProgreso';
+            } else if (generalAverage >= 2.5) {
+                profile = 'arquitectoDeIdeas';
+                imageKey = 'arquitectoDeIdeas';
+            } else if (generalAverage >= 1.5) {
+                profile = 'creadorEnEvolucion';
+                imageKey = 'creadorEnEvolucion';
+            } else {
+                profile = 'exploradorCreativo';
+                imageKey = 'exploradorCreativo';
+            }
+            
+            // Mostrar resultados
+            const desc = resultDescriptions[profile];
+            document.getElementById('resultTitle').textContent = desc.title;
+            document.getElementById('resultDescription').textContent = desc.description;
+            
+            // Mostrar imagen (necesitaremos cargarlas)
+            const imageSrc = getImageSource(imageKey);
+            document.getElementById('resultImage').src = imageSrc;
+            
+            // Mostrar estadísticas
+            document.getElementById('statTecnica').textContent = averages.tecnica.toFixed(1);
+            document.getElementById('statAdministrativa').textContent = averages.administrativa.toFixed(1);
+            document.getElementById('statOrganizacional').textContent = averages.organizacional.toFixed(1);
+            document.getElementById('statPolitica').textContent = averages.politica.toFixed(1);
+            
+            // Guardar en Google Sheets
+            saveToGoogleSheets(profile, averages);
+        }
+
+        function getImageSource(imageKey) {
+            const imageMap = {
+                exploradorCreativo: images.exploradorCreativo,
+                creadorEnEvolucion: images.creadorEnEvolucion,
+                arquitectoDeIdeas: images.arquitectoDeIdeas,
+                catalizadorDeProgreso: images.catalizadorDeProgreso
+            };
+            return imageMap[imageKey] || 'https://via.placeholder.com/400?text=Imagen+No+Disponible';
+        }
+
+        function saveToGoogleSheets(profile, averages) {
+            const data = {
+                cedula: formDataCollected.cedula,
+                nombre: formDataCollected.nombre,
+                email: formDataCollected.email,
+                agencia: formDataCollected.agencia,
+                cargo: formDataCollected.cargo,
+                area: formDataCollected.area,
+                antiguedadTexo: formDataCollected.antiguedadTexo,
+                antiguedadIndustria: formDataCollected.antiguedadIndustria,
+                proyectos: formDataCollected.proyectos.join(', '),
+                profile: profile,
+                tecnica: averages.tecnica,
+                administrativa: averages.administrativa,
+                organizacional: averages.organizacional,
+                politica: averages.politica,
+                fecha: new Date().toLocaleString()
+            };
+            
+            // REEMPLAZAR CON TU URL DE GOOGLE APPS SCRIPT DEPLOYMENT
+            const GOOGLE_SHEET_URL = 'TU_URL_AQUI'; // Se obtiene al desplegar Google Apps Script
+            
+            if (GOOGLE_SHEET_URL === 'TU_URL_AQUI') {
+                console.log('Nota: Para guardar en Google Sheets, necesitas desplegar el Google Apps Script y reemplazar la URL');
+                console.log('Datos que se guardarían:', data);
+                return;
+            }
+            
+            fetch(GOOGLE_SHEET_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    console.log('✓ Datos guardados en Google Sheets correctamente');
+                } else {
+                    console.error('✗ Error al guardar:', result.error);
+                }
+            })
+            .catch(error => {
+                console.error('✗ Error en la solicitud:', error);
+            });
+        }
+
+        function downloadResult() {
+            alert('Funcionalidad de descarga en desarrollo');
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = {};
+            dimensionScores = {
+                tecnica: [],
+                administrativa: [],
+                organizacional: [],
+                politica: []
+            };
+            formDataCollected = {};
+            
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('splashScreen').style.display = 'flex';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => {
+                errorDiv.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
