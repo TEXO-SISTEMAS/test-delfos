@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Delfos - Descubre tu Estilo Profesional</title>
-    <script src="image_base64.js"></script>
     <style>
         * {
             margin: 0;
@@ -18,14 +17,16 @@
             --secondary-blue: #004E89;
             --secondary-teal: #2B9FA3;
             --accent-yellow: #FFC857;
-            --light-cream: #FFF4E6;
+            --light-cream: #F5F5F5;
             --dark-text: #1A1A1A;
             --light-text: #FFFFFF;
+            --bg-light: #E8E8E8;
+            --bg-medium: #D0D0D0;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
             min-height: 100vh;
             color: var(--dark-text);
             overflow-x: hidden;
@@ -49,7 +50,7 @@
             justify-content: center;
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(135deg, var(--light-cream) 0%, #fff9f0 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             animation: slideInUp 0.8s ease-out;
@@ -398,7 +399,7 @@
         }
 
         .result-card {
-            background: linear-gradient(135deg, var(--light-cream) 0%, #fff9f0 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
             border-radius: 30px;
             padding: 50px 40px;
             text-align: center;
@@ -786,22 +787,7 @@
 
     <!-- Script Principal -->
     <script>
-        // BASE64 DE LAS IMÁGENES (se cargan del archivo image_base64.js)
-        // Si BASE64_IMAGES no está disponible, usar placeholders
-        const images = {
-            splash: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.splash : '',
-            exploradorCreativo: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.explorador : '',
-            creadorEnEvolucion: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.creador : '',
-            arquitectoDeIdeas: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.arquitecto : '',
-            catalizadorDeProgreso: typeof BASE64_IMAGES !== 'undefined' ? BASE64_IMAGES.catalizador : ''
-        };
-
-        // Establecer imagen de splash cuando la página carga
-        window.addEventListener('load', function() {
-            if (images.splash) {
-                document.getElementById('splashImage').src = images.splash;
-            }
-        });
+        // Las imágenes se cargan directamente desde los archivos PNG en GitHub
 
         // DATOS DEL TEST
         const testData = [
@@ -1239,13 +1225,14 @@
         }
 
         function getImageSource(imageKey) {
+            // Cargar imágenes PNG directamente desde GitHub
             const imageMap = {
-                exploradorCreativo: images.exploradorCreativo,
-                creadorEnEvolucion: images.creadorEnEvolucion,
-                arquitectoDeIdeas: images.arquitectoDeIdeas,
-                catalizadorDeProgreso: images.catalizadorDeProgreso
+                exploradorCreativo: 'EXPLORADOR CREATIVO.png',
+                creadorEnEvolucion: 'CREADOR EN EVOLUCIÓN.png',
+                arquitectoDeIdeas: 'ARQUITECTO DE IDEAS.png',
+                catalizadorDeProgreso: 'CATALIZADOR DE PROGRESO.png'
             };
-            return imageMap[imageKey] || 'https://via.placeholder.com/400?text=Imagen+No+Disponible';
+            return imageMap[imageKey] || '';
         }
 
         function saveToGoogleSheets(profile, averages) {
