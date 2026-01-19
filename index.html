@@ -949,8 +949,54 @@
         function submitTest() {
             calculateResults();
             
+            // Preparar datos para enviar
+            const allScores = [];
+            for (let dimension in dimensionScores) {
+                const scores = dimensionScores[dimension];
+                const average = scores.reduce((a, b) => a + b, 0) / scores.length;
+                allScores.push(average);
+            }
+            const generalAverage = allScores.reduce((a, b) => a + b, 0) / allScores.length;
+            
+            const dataToSend = {
+                cedula: formDataCollected.cedula,
+                nombre: formDataCollected.nombre,
+                email: formDataCollected.email,
+                cargo: formDataCollected.cargo,
+                agencia: formDataCollected.agencia,
+                area: formDataCollected.area,
+                antiguedadTexo: formDataCollected.antiguedadTexo,
+                antiguedadIndustria: formDataCollected.antiguedadIndustria,
+                proyectos: formDataCollected.proyectos,
+                tecnica: parseFloat((dimensionScores.tecnica.reduce((a, b) => a + b, 0) / dimensionScores.tecnica.length).toFixed(2)),
+                administrativa: parseFloat((dimensionScores.administrativa.reduce((a, b) => a + b, 0) / dimensionScores.administrativa.length).toFixed(2)),
+                organizacional: parseFloat((dimensionScores.organizacional.reduce((a, b) => a + b, 0) / dimensionScores.organizacional.length).toFixed(2)),
+                politica: parseFloat((dimensionScores.politica.reduce((a, b) => a + b, 0) / dimensionScores.politica.length).toFixed(2)),
+                total: parseFloat(generalAverage.toFixed(2)),
+                profile: getProfileName()
+            };
+            
+            // Enviar a Google Sheets
+            sendToGoogleSheets(dataToSend);
+            
             document.getElementById('testSection').classList.remove('visible');
             document.getElementById('resultsSection').classList.add('visible');
+        }
+
+        function sendToGoogleSheets(data) {
+            const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwugthf9xd1M5YbDozviaVl_hZeKyolNeSkSqx2nHZlihA-f598Bfl8mAZ6LnPRsMSpgw/exec';
+            
+            fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                mode: 'no-cors'
+            })
+            .then(() => {
+                console.log('✅ Datos guardados en Google Sheets');
+            })
+            .catch(error => {
+                console.log('⚠️ Error al guardar en Sheets:', error);
+            });
         }
 
         function calculateResults() {
@@ -992,6 +1038,28 @@
             
             const imageSrc = getImageSource(imageKey);
             document.getElementById('resultImage').src = imageSrc;
+        }
+
+        function getProfileName() {
+            const averages = {};
+            for (let dimension in dimensionScores) {
+                const scores = dimensionScores[dimension];
+                const average = scores.reduce((a, b) => a + b, 0) / scores.length;
+                averages[dimension] = parseFloat(average.toFixed(2));
+            }
+            
+            const allScores = Object.values(averages);
+            const generalAverage = allScores.reduce((a, b) => a + b, 0) / allScores.length;
+            
+            if (generalAverage >= 3.5) {
+                return 'Catalizador de Progreso';
+            } else if (generalAverage >= 2.5) {
+                return 'Arquitecto de Ideas';
+            } else if (generalAverage >= 1.5) {
+                return 'Creador en Evolución';
+            } else {
+                return 'Explorador Creativo';
+            }
         }
 
         function getImageSource(imageKey) {
