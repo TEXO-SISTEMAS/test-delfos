@@ -425,6 +425,26 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-orange);
+        }
     </style>
 </head>
 <body>
@@ -602,7 +622,9 @@
         </div>
     </div>
 
-    <script>
+    <footer>
+        <p>Danilo Sosa | Texo Sistemas</p>
+    </footer>
         // DATOS DEL TEST
         const testData = [
             {
@@ -1069,10 +1091,10 @@
 
         function getImageSource(imageKey) {
             const imageMap = {
-                exploradorCreativo: 'EXPLORADOR CREATIVO.png',
-                creadorEnEvolucion: 'CREADOR EN EVOLUCIÓN.png',
-                arquitectoDeIdeas: 'ARQUITECTO DE IDEAS.png',
-                catalizadorDeProgreso: 'CATALIZADOR DE PROGRESO.png'
+                exploradorCreativo: './img/EXPLORADOR CREATIVO.png',
+                creadorEnEvolucion: './img/CREADOR EN EVOLUCIÓN.png',
+                arquitectoDeIdeas: './img/ARQUITECTO DE IDEAS.png',
+                catalizadorDeProgreso: './img/CATALIZADOR DE PROGRESO.png'
             };
             return imageMap[imageKey] || '';
         }
