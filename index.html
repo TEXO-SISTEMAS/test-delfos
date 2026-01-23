@@ -1000,9 +1000,12 @@
                 profile: getProfileName()
             };
             
-            // Agregar respuestas individuales
+            // Agregar respuestas con el texto completo de la opción seleccionada
             for (let i = 0; i < 20; i++) {
-                dataToSend['pregunta' + (i + 1)] = answers[i] || '';
+                const question = testData[i];
+                const selectedLevel = answers[i];
+                const selectedOption = question.options.find(opt => opt.level === selectedLevel);
+                dataToSend['pregunta' + (i + 1)] = selectedOption ? selectedOption.text : '';
             }
             
             // Enviar a Google Sheets
