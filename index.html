@@ -347,6 +347,84 @@
             animation: slideInUp 0.6s ease-out 0.1s both;
         }
 
+        .result-description {
+            font-size: 1.05em;
+            color: var(--dark-text);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: justify;
+            background: rgba(43, 159, 163, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary-teal);
+        }
+
+        .dimensions-chart {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(43, 159, 163, 0.05);
+            border-radius: 15px;
+        }
+
+        .chart-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 20px;
+            height: 250px;
+            margin-bottom: 30px;
+        }
+
+        .bar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(180deg, var(--secondary-teal) 0%, #2B9FA3 100%);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            min-height: 20px;
+            box-shadow: 0 5px 15px rgba(43, 159, 163, 0.2);
+        }
+
+        .bar:hover {
+            transform: scaleY(1.05);
+            box-shadow: 0 8px 20px rgba(43, 159, 163, 0.4);
+        }
+
+        .bar-label {
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: var(--secondary-blue);
+            letter-spacing: 0.5px;
+        }
+
+        .bar-value {
+            margin-top: 8px;
+            font-size: 1.3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .result-buttons {
             display: flex;
             gap: 15px;
@@ -615,6 +693,32 @@
             <div class="result-card">
                 <img id="resultImage" class="result-image" src="" alt="Resultado">
                 <h2 class="result-title" id="resultTitle"></h2>
+                <div class="result-description" id="resultDescription"></div>
+                <div class="dimensions-chart">
+                    <div class="chart-title">Puntajes por Dimensión</div>
+                    <div class="chart-bars">
+                        <div class="bar-container">
+                            <div class="bar" id="barTecnica" style="height: 0;"></div>
+                            <div class="bar-label">T</div>
+                            <div class="bar-value" id="valueTecnica">0</div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar" id="barAdministrativa" style="height: 0;"></div>
+                            <div class="bar-label">A</div>
+                            <div class="bar-value" id="valueAdministrativa">0</div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar" id="barOrganizacional" style="height: 0;"></div>
+                            <div class="bar-label">O</div>
+                            <div class="bar-value" id="valueOrganizacional">0</div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar" id="barPolitica" style="height: 0;"></div>
+                            <div class="bar-label">P</div>
+                            <div class="bar-value" id="valuePolitica">0</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="result-buttons">
                     <button class="btn-new-test" onclick="restartTest()">🔄 Nuevo Test</button>
                 </div>
@@ -854,16 +958,20 @@
         // DESCRIPCIONES
         const resultDescriptions = {
             exploradorCreativo: {
-                title: 'Explorador Creativo'
+                title: 'Explorador Creativo',
+                description: 'Te encuentras en una etapa de descubrimiento, aprendiendo las bases y adquiriendo experiencia. A medida que exploras el mundo de tu área, sigues desarrollando las habilidades necesarias para avanzar. Este es el momento de poner a prueba tus ideas y aprender de cada experiencia. La curiosidad y las ganas de mejorar son tus mejores aliados en este camino hacia la maestría.'
             },
             creadorEnEvolucion: {
-                title: 'Creador en Evolución'
+                title: 'Creador en Evolución',
+                description: 'Estás comenzando a pulir tu estilo y tus habilidades. Aunque aún estás perfeccionando tu enfoque, ya has logrado entender y aplicar los fundamentos de tu área. Tu capacidad de aprender rápidamente y de adaptarte a nuevas situaciones te permite afrontar proyectos con confianza, aunque todavía tienes espacio para desarrollar una mayor autonomía en tu trabajo.'
             },
             arquitectoDeIdeas: {
-                title: 'Arquitecto de Ideas'
+                title: 'Arquitecto de Ideas',
+                description: 'Tu experiencia y capacidad para tomar decisiones informadas se han consolidado. Ya no dependes de la supervisión constante y comienzas a tomar las riendas de tus proyectos. Eres capaz de conceptualizar ideas y soluciones que aportan valor al equipo, y te sientes cómodo en roles de mayor responsabilidad. Tu habilidad para gestionar tareas de manera eficiente te posiciona como un profesional cada vez más autónomo.'
             },
             catalizadorDeProgreso: {
-                title: 'Catalizador de Progreso'
+                title: 'Catalizador de Progreso',
+                description: 'Tu dominio del campo es amplio y profundo. Eres capaz de liderar proyectos complejos, manejar equipos y tomar decisiones estratégicas que impactan positivamente los resultados. Tu enfoque proactivo y tu habilidad para identificar oportunidades te colocan como un referente dentro de tu área, inspirando a otros con tus soluciones innovadoras y tu visión estratégica.'
             }
         };
 
@@ -1074,9 +1182,31 @@
             
             const desc = resultDescriptions[profile];
             document.getElementById('resultTitle').textContent = desc.title;
+            document.getElementById('resultDescription').textContent = desc.description;
             
             const imageSrc = getImageSource(imageKey);
             document.getElementById('resultImage').src = imageSrc;
+            
+            // Mostrar gráfico de dimensiones
+            const maxScore = 5;
+            const heights = {
+                tecnica: (averages.tecnica / maxScore) * 100,
+                administrativa: (averages.administrativa / maxScore) * 100,
+                organizacional: (averages.organizacional / maxScore) * 100,
+                politica: (averages.politica / maxScore) * 100
+            };
+            
+            document.getElementById('barTecnica').style.height = heights.tecnica + '%';
+            document.getElementById('valueTecnica').textContent = averages.tecnica.toFixed(2);
+            
+            document.getElementById('barAdministrativa').style.height = heights.administrativa + '%';
+            document.getElementById('valueAdministrativa').textContent = averages.administrativa.toFixed(2);
+            
+            document.getElementById('barOrganizacional').style.height = heights.organizacional + '%';
+            document.getElementById('valueOrganizacional').textContent = averages.organizacional.toFixed(2);
+            
+            document.getElementById('barPolitica').style.height = heights.politica + '%';
+            document.getElementById('valuePolitica').textContent = averages.politica.toFixed(2);
         }
 
         function getProfileName() {
@@ -1103,10 +1233,10 @@
 
         function getImageSource(imageKey) {
             const imageMap = {
-                exploradorCreativo: './img/explorador creativo.png',
-                creadorEnEvolucion: './img/creador en evolucion.png',
-                arquitectoDeIdeas: './img/arquitecto de ideas.png',
-                catalizadorDeProgreso: './img/catalizador de progreso.png'
+                exploradorCreativo: './img/EXPLORADOR CREATIVO.png',
+                creadorEnEvolucion: './img/CREADOR EN EVOLUCIÓN.png',
+                arquitectoDeIdeas: './img/ARQUITECTO DE IDEAS.png',
+                catalizadorDeProgreso: './img/CATALIZADOR DE PROGRESO.png'
             };
             return imageMap[imageKey] || '';
         }
